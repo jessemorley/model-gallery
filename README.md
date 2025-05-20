@@ -1,6 +1,6 @@
 # Model Gallery
 
-A simple web app to browse model portfolios from Chadwick, Chic, and Viviens.
+A simple proof of concept web app to browse model portfolios.
 
 ## Features
 - Lazy loading of model cards
