@@ -48,13 +48,11 @@ h2 {
 
 #gallery {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* Default for mid-size screens */
   width: 100%;
   box-sizing: border-box;
   border-left: 1px solid #000;
   border-top: 1px none #000;
 }
-
 
 .model-card {
   display: flex;
@@ -103,7 +101,7 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 0px;
   margin: 0 auto 0 auto;
   height: clamp(48px, 6vw, 80px);
 }
