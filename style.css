@@ -68,10 +68,6 @@ h2 {
   box-sizing: border-box;
 }
 
-.model-card:hover {
-  /* transform: scale(1.015); */
-}
-
 .model-card .thumb-wrapper {
   width: 100%;
   aspect-ratio: 3 / 4;
