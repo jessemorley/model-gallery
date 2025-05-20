@@ -14,4 +14,4 @@ A simple web app to browse model portfolios from Chadwick, Chic, and Viviens.
 - `style.css`: Styling
 
 ## View live
-[Your GitHub Pages link](https://yourusername.github.io/your-repo/)
+[Model Gallery](https://jessemorley.github.io/model-gallery/)
