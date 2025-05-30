@@ -11,16 +11,15 @@ let filteredModels = [];
 let start = 0;
 const batchSize = 30;
 
-Promise.all([
-  loadJSON("models/chadwick_models.json"),
-  loadJSON("models/chic_models.json"),
-  loadJSON("models/viviens_models.json")
-]).then(([chadwickModels, chicModels, viviensModels]) => {
-  models = [
-    ...chadwickModels.map(m => ({ ...m, agency: "Chadwick" })),
-    ...chicModels.map(m => ({ ...m, agency: "Chic" })),
-    ...viviensModels.map(m => ({ ...m, agency: "Viviens" }))
-  ];
+const db = firebase.firestore();
+
+async function fetchModelsFromFirestore() {
+  const snapshot = await db.collection("models").get();
+  return snapshot.docs.map(doc => doc.data());
+}
+
+fetchModelsFromFirestore().then(modelList => {
+  models = modelList;
 
   models.sort((a, b) => a.name.localeCompare(b.name));
 
