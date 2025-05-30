@@ -1,3 +1,4 @@
+// Firebase setup
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
 import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
@@ -13,6 +14,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+// Global state
 let models = [];
 let modelCards = [];
 let filteredModels = [];
@@ -76,16 +78,19 @@ fetchModelsFromFirestore().then(modelList => {
   }
 });
 
-
 function renderBatch() {
   const gallery = document.getElementById("gallery");
   const end = Math.min(start + batchSize, filteredModels.length);
   for (let i = start; i < end; i++) {
     const model = filteredModels[i];
+    const imageList = model.portfolio_images || [];
+    if (imageList.length === 0) return; // skip if no images
+
+    if (!imageList[0]) continue;
+
     const card = document.createElement("div");
     card.className = "model-card";
 
-    const imageList = model.sample_images.split(";");
     let currentIndex = 0;
 
     const thumbWrapper = document.createElement("div");
