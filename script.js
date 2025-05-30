@@ -1,20 +1,26 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
-// Helper: fetch and parse a JSON file
-function loadJSON(path) {
-  return fetch(path).then(res => res.json());
-}
+const firebaseConfig = {
+  apiKey: "AIzaSyDwm8O5atOkxN4UFITiXRJVjdFiUepzUFk",
+  authDomain: "agency-database-c8d6c.firebaseapp.com",
+  projectId: "agency-database-c8d6c",
+  storageBucket: "agency-database-c8d6c.firebasestorage.app",
+  messagingSenderId: "46488370768",
+  appId: "1:46488370768:web:852e854a0a1514c4741b55"
+};
 
-// Global state
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
 let models = [];
 let modelCards = [];
 let filteredModels = [];
 let start = 0;
 const batchSize = 30;
 
-const db = firebase.firestore();
-
 async function fetchModelsFromFirestore() {
-  const snapshot = await db.collection("models").get();
+  const snapshot = await getDocs(collection(db, "models"));
   return snapshot.docs.map(doc => doc.data());
 }
 
@@ -69,6 +75,7 @@ fetchModelsFromFirestore().then(modelList => {
     renderBatch();
   }
 });
+
 
 function renderBatch() {
   const gallery = document.getElementById("gallery");
